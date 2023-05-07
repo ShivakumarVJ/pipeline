@@ -2,16 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage ('Compile Stage') {
-
+      stage('checkout') {
             steps {
-                withMaven(maven : 'maven_3_6_3') {
-                    sh 'mvn clean package'
-                }
+                sh 'hostname'
             }
         }
-
-          stage('Test') {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
             steps {
                 sh 'sleep 30'
             }
